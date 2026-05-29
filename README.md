@@ -3,6 +3,10 @@
 
 A pixel editor for creating custom characters on HD44780-based LCD displays with nucleo boards. It gives ready-to-use C code with hex values.
 
+<p style="text-align: center;">
+  <img src="demo_screenshot.png" width="80%" alt="demo">
+</p>
+
 ## How to use
 
 1. **Click pixels** on any character cell to toggle them on/off
