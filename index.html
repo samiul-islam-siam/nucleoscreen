@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="utf-8">
+    <title>LCD Glyph Generator</title>
+    <meta name="description" content="LCD custom character pixel editor — hex output">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<textarea id="dummy"></textarea>
+
+<body>
+
+    <header>
+        <h1>LCD Glyph Generator</h1>
+        <span>custom character editor · hex output</span>
+        <button id="themeBtn" onclick="toggleTheme()" style="margin-left:auto;">☀ light</button>
+    </header>
+
+    <div id="canvas-wrap">
+        <div id="canvas"></div>
+    </div>
+
+    <div id="lower">
+
+        <!-- ── Options sidebar ── -->
+        <div id="options">
+
+            <div class="section-label">Screen</div>
+            <div class="btn-group">
+                <!-- To add a screen: add entry to SCREENS in main.js, add button here -->
+                <button onclick="setScreen('16x2')">16×2</button>
+                <button class="danger" onclick="eraseScreen()">⌫ erase</button>
+            </div>
+            <div class="status-tag" id="eraseAlert">⚠ erases the canvas</div>
+
+            <div class="section-label">Output</div>
+            <div class="btn-group">
+                <!-- label toggles between "full code" and "func only" -->
+                <button id="codeModeBtn" onclick="toggleCodeMode(this)">full code</button>
+            </div>
+
+            <div class="limit-note">📌Up to 8 segments can be used at once (CGRAM limit)</div>
+
+        </div>
+
+        <!-- ── Code output ── -->
+        <div style="flex:1; min-width:280px; position:relative;">
+            <button onclick="copyCode()" title="Copy code"
+                style="position:absolute; top:8px; right:10px; z-index:10; background:none; border:1px solid var(--ui-border); border-radius:5px; font-size:11px; font-family:'JetBrains Mono',monospace; padding:3px 10px; cursor:pointer; color:var(--ui-text); opacity:0.6;"
+                onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=0.6">copy</button>
+            <span class="status-tag" id="copyAlert" style="position:absolute; top:11px; right:70px;">✓ copied</span>
+            <div id="bitmap"><span id="setup"></span><span>void image() {</span><br>
+                <div id="clear" style="padding-left:20px">lcd.clear();</div><br>
+                <div id="bytes"></div>
+                <br>
+                <div id="createChar"></div>
+                <br>
+                <div id="setCursor"></div>
+                <span>}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="limit-note">
+        <a href="https://github.com/samiul-islam-siam/STM32-Lab/tree/Experiments" target="_blank" rel="noopener">🔗lcd library</a>
+    </div>
+
+    <div id="credit">
+        by <a href="https://github.com/samiul-islam-siam/" target="_blank" rel="noopener">Md. Samiul Islam Siam</a>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
