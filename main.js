@@ -75,22 +75,26 @@ function applyCodeMode() {
         setup.innerText = '';
     } else {
         setup.innerText =
-`#include "lcd.h"
+`#include "main.h"
+#include "lcd.h"
+
+void SystemClock_Config(void);
+void GPIO_Init(void);
 
 Lcd_HandleTypeDef lcd;
-
 void image(void);
 
 int main(void) {
-    /* peripheral init (clocks, GPIO) goes here */
+    SystemClock_Config();
+    GPIO_Init();
 
-    Lcd_PortType dataPorts[8] = { /* your data ports */ };
-    Lcd_PinType  dataPins[8]  = { /* your data pins  */ };
+    Lcd_PortType ports[] = { GPIOC, GPIOB, GPIOA, GPIOA };
+    Lcd_PinType  pins[]  = { GPIO_PIN_7, GPIO_PIN_6, GPIO_PIN_7, GPIO_PIN_6 };
 
-    lcd = Lcd_create(dataPorts, dataPins,                                                                                                       
-                     GPIOB, GPIO_PIN_0,   /* RS */
-                     GPIOB, GPIO_PIN_1,   /* EN */
-                     LCD_8_BIT_MODE);
+    lcd = Lcd_create(ports, pins,
+                     GPIOB, GPIO_PIN_5,   /* RS */
+                     GPIOB, GPIO_PIN_4,   /* EN */
+                     LCD_4_BIT_MODE);
 
     image();
     while (1) {}
