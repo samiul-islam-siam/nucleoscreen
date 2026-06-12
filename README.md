@@ -1,27 +1,37 @@
 # nucleoscreen
-### A LCD Glyph Generator
+### LCD Glyph Generator
 
-pixel editor for creating custom characters on HD44780-based LCD displays with nucleo boards. It gives ready-to-use C code with hex values.
+A pixel editor for creating custom characters on **HD44780-based LCDs** using Nucleo boards.  
+Generates ready-to-use **C code with hex values** for STM32 projects.
 
-<p style="text-align: center;">
-  <img src="demo_light.png" width="48%" alt="demo">
-  <img src="demo_dark.png" width="48%" alt="demo">
+<p align="center">
+  <img src="demo_light.png" width="48%" alt="Light theme demo">
+  <img src="demo_dark.png" width="48%" alt="Dark theme demo">
 </p>
+
+## Features
+
+- Pixel-based editor for HD44780 based LCD 
+- **Live CGRAM segment counter** (0–8 limit)
+- Generate **full C code** or **function-only** output
+- **One-click copy** of generated code
+- **Expandable code view** for better readability
+- **Export or download canvas as PNG**
+- Light / Dark modern theme toggle
+- Undo (ctrl+z) / Redo (ctrl+y) / Full erase options
 
 ## How to use
 
-1. **Click pixels** on any character cell to toggle them on/off
-2. **Drag** across pixels to paint multiple at once
-3. Up to **8 segments** can be used or active at a time (hardware CGRAM limit)
-4. Switch between **function only** or **full code** output using the button in the sidebar
-5. Hit **copy** in the top-right of the code panel to copy the generated C code
-6. You can change the **appearance** using the top-right corner button
+1. Click or drag to draw pixels
+2. Watch the segment counter to stay within CGRAM limits
+3. Copy or expand the generated C code
+4. Optionally export the design as a PNG
 
 ## Live demo
 
-👉 [Try it here](https://samiul-islam-siam.github.io/nucleoscreen/)
+👉 https://samiul-islam-siam.github.io/nucleoscreen/
 
 ## Library
 
-This tool generates code for the HD44780 LCD library (e.g. LCD 1602A):  
-[🔗 lcd lib for stm32](https://github.com/samiul-islam-siam/STM32-Lab/tree/Experiments/LCD%201602A%20BareMetal)
+Generated code would be used directly using this library:  
+[LCD 1602 Library (Bare-Metal)](https://github.com/samiul-islam-siam/STM32-Lab/tree/Experiments/LCD%201602A%20BareMetal)
