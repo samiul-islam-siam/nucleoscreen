@@ -14,7 +14,8 @@
 
     <header>
         <h1>LCD Glyph Generator</h1>
-        <span>custom character editor · hex output</span>
+        <span>custom character editor · segment used: </span>
+        <span id="cgramCount" title="CGRAM slots used">0 / 8</span>
         <button id="themeBtn" onclick="toggleTheme()" style="margin-left:auto;">☀ light</button>
     </header>
 
@@ -39,14 +40,17 @@
             <div class="btn-group">
                 <!-- label toggles between "full code" and "func only" -->
                 <button id="codeModeBtn" onclick="toggleCodeMode(this)">full code</button>
+                <button onclick="downloadCanvasPng()">↓ png</button>
             </div>
-
             <div class="limit-note">📌Up to 8 segments can be used at once (CGRAM limit)</div>
 
         </div>
 
         <!-- ── Code output ── -->
         <div style="flex:1; min-width:280px; position:relative;">
+            <button onclick="popoutCode()" title="Expand code"
+                style="position:absolute; top:8px; right:62px; z-index:10; background:none; border:1px solid var(--ui-border); border-radius:5px; font-size:11px; font-family:'JetBrains Mono',monospace; padding:3px 8px; cursor:pointer; color:var(--ui-text); opacity:0.6;"
+                onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=0.6">⤢</button>
             <button onclick="copyCode()" title="Copy code"
                 style="position:absolute; top:8px; right:10px; z-index:10; background:none; border:1px solid var(--ui-border); border-radius:5px; font-size:11px; font-family:'JetBrains Mono',monospace; padding:3px 10px; cursor:pointer; color:var(--ui-text); opacity:0.6;"
                 onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=0.6">copy</button>
@@ -65,13 +69,24 @@
 
     <div class="divider"></div>
     <div class="limit-note">
-        <a href="https://github.com/samiul-islam-siam/STM32-Lab/tree/Experiments/LCD%201602A%20BareMetal" target="_blank" rel="noopener">🔗lcd library</a>
+        <a href="https://github.com/samiul-islam-siam/STM32-Lab/tree/Experiments/LCD%201602A%20BareMetal"
+            target="_blank" rel="noopener">🔗lcd library</a>
     </div>
 
     <div id="credit">
         by <a href="https://github.com/samiul-islam-siam/" target="_blank" rel="noopener">Md. Samiul Islam Siam</a>
+        &
+        <a href="https://github.com/ParthoKumar-27" target="_blank" rel="noopener">Partho Kumar Mondal</a>
     </div>
+    <div id="cgramAlert">CGRAM limit reached!</div>
 
+    <!-- ── Code modal ── -->
+    <div id="codeModalOverlay" onclick="closeCodeModal()">
+        <div id="codeModal" onclick="event.stopPropagation()">
+            <button id="codeModalClose" onclick="closeCodeModal()" title="Close">✕</button>
+            <pre id="codeModalContent"></pre>
+        </div>
+    </div>
     <script src="main.js"></script>
 </body>
 
